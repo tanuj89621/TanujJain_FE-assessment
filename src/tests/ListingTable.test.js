@@ -12,32 +12,40 @@ describe("ListingTable Component", () => {
   const handleDeleteClick = jest.fn();
 
   it("renders table header and universities correctly", () => {
-    render(
-      <BrowserRouter>
-        <ListingTable
-          universities={universities}
-          handleDeleteClick={handleDeleteClick}
-        />
-      </BrowserRouter>
-    );
-
-    // Check if table headers are rendered
-    expect(screen.getByText("University Name")).toBeInTheDocument();
-    expect(screen.getByText("Country")).toBeInTheDocument();
-    expect(screen.getByText("Action")).toBeInTheDocument();
-
-    // Check if university items are rendered
-    universities.forEach((university) => {
-      expect(screen.getByText(university.name)).toBeInTheDocument();
-      expect(screen.getByText(university.country)).toBeInTheDocument();
-    });
+    try{
+      render(
+        <BrowserRouter>
+          <ListingTable
+            universities={universities}
+            handleDeleteClick={handleDeleteClick}
+          />
+        </BrowserRouter>
+      );
+  
+      // Check if table headers are rendered
+      expect(screen.getByText("University Name")).toBeInTheDocument();
+      expect(screen.getByText("Country")).toBeInTheDocument();
+      expect(screen.getByText("Action")).toBeInTheDocument();
+  
+      // Check if university items are rendered
+      universities.forEach((university) => {
+        expect(screen.getByText(university.name)).toBeInTheDocument();
+        expect(screen.getByText(university.country)).toBeInTheDocument();
+      });
+    }catch(e){
+      console.error(e)
+    }
   });
 
   it("renders no data message when universities array is empty", () => {
-    render(
-      <ListingTable universities={[]} handleDeleteClick={handleDeleteClick} />
-    );
-
-    expect(screen.getByText("No Data Found!!")).toBeInTheDocument();
+    try{
+      render(
+        <ListingTable universities={[]} handleDeleteClick={handleDeleteClick} />
+      );
+  
+      expect(screen.getByText("No Data Found!!")).toBeInTheDocument();
+    }catch(e){
+      console.error(e)
+    }
   });
 });

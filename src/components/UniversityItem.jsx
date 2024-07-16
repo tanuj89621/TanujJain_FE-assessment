@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import React from "react";
 
 function UniversityItem({ university, handleDeleteClick }) {
   const [isDeleting, setIsDeleting] = useState(false);
